@@ -618,7 +618,7 @@ section {
   width: calc(var(--hero-image-height) * 0.8751);
   height: var(--hero-image-height);
   justify-self: center;
-  background-image: url("./assets/images/MyPicatBCL.jpg");
+  background-image: url("../../assets/images/MyPicatBCL.jpg");
   background-position: 50%;
   background-size: cover;
   background-repeat: no-repeat;
