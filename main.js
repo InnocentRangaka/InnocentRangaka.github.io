@@ -2,7 +2,6 @@
  * Imports the main CSS file for the application.
  * Imports the project details module, which likely contains information about the current project.
  */
-import "./style.css";
 import projectDetails from "./project-details.js";
 
 // Nav Links
