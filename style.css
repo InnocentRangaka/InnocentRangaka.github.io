@@ -1,0 +1,1930 @@
+/**
+ * Resets the default padding, margin, text decoration, list styles, and box-sizing
+ * for all elements and their pseudo-elements.
+ * This helps ensure consistent styling across the application.
+ */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/**
+ * Defines the global CSS variables for the application.
+ * These variables are used throughout the application to ensure consistent styling and theming.
+ */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  --font-size: clamp(0.875rem, 1rem, 1.25rem);
+  --link-font-size: calc(var(--font-size) * 0.9375);
+  color-scheme: light dark;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --text-color-grey: #999;
+
+  --primary-color: #747bff;
+  --secondary-color: #36005e;
+  --tertiary-color: #0f0715;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --data-percent: 0;
+  --gap: 1rem;
+
+  --hero-image-height: 560px;
+}
+
+/**
+ * Applies global styles to the body element, including setting the text color, margin, centering the content, and setting the minimum width and height.
+ */
+body {
+  color: var(--text-color);
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-size: var(--font-size);
+}
+
+/**
+ * Defines the font sizes for the main heading (h1), subheadings (h2), and smaller headings (h3) in the application.
+ * The font sizes are calculated based on a base font size variable (`--font-size`) to allow for easy scaling across the application.
+ */
+h1 {
+  font-size: calc(
+    var(--font-size) * 4.75
+  ); /* font-size: clamp(3.2rem, 4rem, 5rem); */
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: calc(var(--font-size) * 2.75);
+}
+
+h3 {
+  font-size: calc(var(--font-size) * 1.75);
+  /* font-size: 1.625rem; */
+  font-weight: 400;
+}
+
+/**
+ * Styles the container element to be centered on the page with a maximum width.
+ * The container will have a minimum width based on the content, but will not exceed 93.75% of the page width.
+ * The container is also vertically centered using the `align-items` property.
+ */
+.container {
+  position: relative;
+  min-width: min-content;
+  width: 100%;
+  max-width: 93.75%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+/**
+ * CSS utility classes for padding and margin.
+ *
+ * - `.p-0`: Sets the padding to 0 on all sides.
+ * - `.px-0`: Sets the left and right padding to 0.
+ * - `.pr-30`: Sets the right padding to 30 pixels.
+ * - `.mt-0`: Sets the top margin to 0.
+ * - `.mt-2`: Sets the top margin to 2 pixels.
+ * - `.mb-15`: Sets the bottom margin to 15 pixels.
+ * - `.my-0`: Sets the top and bottom margin to 0.
+ * - `.mb-0`: Sets the bottom margin to 0.
+ * - `.mb-5`: Sets the bottom margin to 5 pixels.
+ * - `.mb-20`: Sets the bottom margin to 20 pixels.
+ */
+.p-0 {
+  padding: 0 !important;
+}
+
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.pr-30 {
+  padding-right: 30px !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mt-2 {
+  margin-top: 2px !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+/**
+ * Utility classes for layout and styling.
+ *
+ * `.gap-30`: Adds a 30px gap between flex items.
+ * `.sm-hide`: Hides an element on small screens.
+ * `.hide`, `.sm-show`: Hides an element on all screens, or shows it only on small screens.
+ * `.text-gradient`: Applies a gradient text effect using the `--primary-color` and `--text-color` CSS variables.
+ * `main`: Sets the width of the main content area to 100%.
+ */
+.gap-30 {
+  gap: 30px;
+}
+
+.sm-hide {
+  display: flex;
+}
+
+.hide,
+.sm-show {
+  display: none !important;
+}
+
+.text-gradient {
+  background: var(--primary-color);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(var(--primary-color)),
+    to(var(--text-color))
+  );
+  background: -o-linear-gradient(
+    left,
+    var(--primary-color) 0%,
+    var(--text-color) 100%
+  );
+  background: linear-gradient(
+    to right,
+    var(--primary-color) 0%,
+    var(--text-color) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+main {
+  width: 100%;
+}
+
+/**
+ * Styles the header, navigation, and list elements to create a sticky header with a navigation menu.
+ * The header is positioned at the top of the page and has a border-bottom and semi-transparent background.
+ * The navigation menu is displayed as a flex container, with the list items and links centered vertically.
+ * The header and navigation elements use the full available width of the page, with a maximum width of 100%.
+ * The header and navigation elements have a smooth transition effect when the page is scrolled.
+ * The header is given a high z-index to ensure it appears on top of other content.
+ */
+header,
+header nav,
+nav ul,
+.nav__list,
+nav ul li,
+.nav__list li,
+nav ul li a,
+.nav__list li a {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+header {
+  position: sticky;
+  width: -webkit-fill-available;
+  max-width: 100%;
+  top: 0;
+  border-bottom: 1px solid var(--tertiary-color);
+  background-color: rgba(36, 36, 36, 0.8);
+  justify-content: space-between;
+  flex-wrap: inherit;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+/**
+ * Styles the logo and side elements in the header.
+ * The `.logo__side` class is used to display the logo and other side elements in the header. It uses inline-flex to position the elements horizontally, and sets the height to 50 pixels. The elements are centered vertically using `place-items: center`, and there is a small gap between them using `gap: calc(var(--gap) * .625)`.
+ * The `header img` and `.logo__side img` selectors style the images within the header and logo side elements. They set the width and height to 32 pixels, and make the images circular with a 50% border-radius.
+ */
+.logo__side {
+  display: inline-flex;
+  position: relative;
+  height: 50px;
+  justify-content: space-between;
+  place-items: center;
+  gap: calc(var(--gap) * 0.625);
+}
+
+header img,
+.logo__side img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* TOP NAVIGATION */
+/**
+ * Styles the navigation bar in the header of the page.
+ * The navigation bar is displayed in a row, with the list items centered.
+ * The active link is highlighted with an underline that animates in and out.
+ */
+header nav {
+  display: flex !important;
+  width: -webkit-fill-available;
+  justify-content: space-between;
+}
+
+nav,
+nav ul,
+nav .nav__list {
+  flex-direction: row;
+}
+
+nav ul,
+.nav__list,
+nav ul li,
+.nav__list li,
+nav ul li a,
+.nav__list li a {
+  place-content: center;
+}
+
+nav ul,
+.nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: calc(var(--gap) * 0.625);
+}
+
+nav ul li,
+.nav__list li {
+  flex-wrap: nowrap;
+  padding: 0 10px;
+  clip-path: border-box;
+  box-sizing: border-box;
+}
+
+nav ul li a,
+.nav__list li a {
+  width: 100%;
+  flex-direction: column;
+}
+
+nav ul li a::after,
+.nav__list li a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  border-radius: 4px;
+  bottom: 0;
+  width: auto;
+  min-width: 10.75%;
+  background-color: var(--primary-color);
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  animation: widthToZero 0.5s ease-in-out;
+}
+
+nav ul li a:hover::after,
+.nav__list li a:hover::after {
+  color: var(--text-color);
+}
+
+nav ul li a:hover::after,
+.nav__list li a:hover::after,
+nav ul li a.active:hover::after,
+.nav__list li a.active:hover::after {
+  background-color: var(--primary-color) !important;
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  animation: widthToFull 0.3s ease-in-out;
+}
+
+nav ul li a.active:hover,
+.nav__list li a.active:hover,
+nav ul li a:hover::after,
+.nav__list li a:hover::after,
+nav ul li a.active:hover::after,
+.nav__list li a.active:hover::after {
+  color: var(--primary-color) !important;
+}
+
+nav ul li a:active,
+.nav__list li a:active,
+nav ul li a.active,
+.nav__list li a.active {
+  color: var(--text-color);
+}
+
+nav ul li a:active::after,
+.nav__list li a:active::after,
+nav ul li a.active::after,
+.nav__list li a.active::after {
+  min-width: 10.75%;
+  background-color: var(--primary-color);
+}
+
+nav ul li a:focus,
+.nav__list li a:focus {
+  color: var(--text-color);
+}
+
+nav ul li a:focus::after,
+.nav__list li a:focus::after,
+nav ul li a.active::after,
+.nav__list li a.active::after {
+  background-color: var(--text-color);
+}
+
+nav ul li a.active::after,
+.nav__list li a.active::after {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  animation: widthToZero 0.5s ease-in-out;
+}
+
+/**
+ * Defines an animation that scales an element's width from 0 to 100% over time.
+ * This animation can be used to create a smooth "expanding" effect for elements.
+ */
+@keyframes widthToFull {
+  0% {
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+/**
+ * Defines an animation that scales the element's width from 100% to 0%.
+ * This animation can be used to create a "shrinking" effect on an element.
+ */
+@keyframes widthToZero {
+  0% {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+}
+
+/**
+ * Styles for the header buttons in the navigation menu.
+ * These styles apply to anchor tags, buttons, and any elements with the `.header__btn` class.
+ * The buttons have a primary color background by default, and change to a secondary color on focus.
+ * On hover, the buttons have a subtle shadow animation and the border color changes.
+ * On active, the buttons have a tertiary color background.
+ */
+nav a.header__btn,
+.btn.header__btn,
+nav .header__btn {
+  --btn-bg-color: var(--primary-color);
+  display: inline-flex;
+  position: relative;
+  height: 32px;
+  line-height: 1;
+  color: var(--text-color);
+  padding: 6px 16px;
+  border-radius: 25px;
+  align-items: center;
+  place-content: center;
+  background-color: var(--btn-bg-color);
+  border: 2px solid var(--btn-bg-color);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+nav a.header__btn:hover,
+.btn.header__btn:hover,
+nav .header__btn:hover {
+  --btn-bg-color: var(--primary-color);
+  color: var(--text-color);
+  border: 2px solid var(--btn-bg-color);
+  box-shadow: inset -6px -6px 6px 0 rgba(21, 21, 21, 0.1),
+    inset 6px 6px 6px 0 rgba(21, 21, 21, 0.1);
+  animation: slideShadow 1s forwards 1 ease,
+    fillBorderColor 1s forwards 1 ease-in-out;
+}
+
+nav a.header__btn:focus,
+.btn.header__btn:focus,
+nav .header__btn:focus {
+  --btn-bg-color: var(--secondary-color); /* #36005e*/
+  background-color: var(--btn-bg-color);
+  border-color: var(--btn-bg-color);
+}
+
+nav a.header__btn:active,
+.btn.header__btn:active,
+nav .header__btn:active {
+  --btn-bg-color: var(--tertiary-color);
+  background-color: var(--btn-bg-color);
+  border-color: var(--btn-bg-color);
+}
+
+/**
+ * Defines an animation that transitions the box-shadow of an element from a solid color to a more complex shadow effect.
+ * The animation starts with a solid box-shadow of the `--tertiary-color` and transitions to an inset shadow with both light and dark components.
+ * This animation can be used to create a sliding or sliding shadow effect on an element.
+ */
+
+@keyframes slideShadow {
+  from {
+    box-shadow: inset 155px 0 0 0 var(--tertiary-color);
+  }
+  to {
+    box-shadow: inset -6px -6px 6px 0 rgba(21, 21, 21, 0.1),
+      inset 6px 6px 6px 0 rgba(21, 21, 21, 0.1);
+  }
+}
+
+/**
+ * Defines an animation that transitions the border color of an element from the tertiary color to the button background color.
+ * This animation can be used to create a visual effect, such as a button hover or focus state.
+ */
+@keyframes fillBorderColor {
+  from {
+    border-color: var(--tertiary-color);
+  }
+  to {
+    border-color: var(--btn-bg-color);
+  }
+}
+
+/* TOP NAVIGATION ENDS HERE */
+
+/* SECTION */
+/**
+ * Styles the layout and appearance of sections in the application.
+ * The `section` element is used to create a full-width container with a fixed height
+ * that is vertically centered. The content inside the section is laid out using
+ * grid or flex layouts, with options for 1, 2, 3, or 4 columns.
+ * The `section__thumbnail` class is used to create a circular thumbnail image
+ * with a fixed size of 196px by 196px.
+ */
+section {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 820px, 100%);
+  padding: 120px 0;
+  align-items: center;
+}
+
+.section__body {
+  gap: calc(var(--gap) * 2);
+}
+
+.columns-2,
+.section__body {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+}
+
+.columns-3 {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+}
+
+.columns-4 {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+}
+
+.columns-2 {
+  gap: calc(var(--gap) * 3);
+}
+
+.columns-1 {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  /* justify-content: space-between; */
+  gap: calc(var(--gap) * 3.125);
+}
+
+.section__thumbnail {
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+}
+
+.section__thumbnail,
+.section__thumbnail picture,
+.section__thumbnail img {
+  --thumbnail-size: 196px;
+  width: var(--thumbnail-size);
+  height: var(--thumbnail-size);
+  clip-path: circle();
+}
+
+
+/* HERO SECTION STARTS HERE */
+/**
+ * The hero section of the page, containing the main content and an image.
+ * The hero section is displayed at the top of the page and is used to showcase the main
+ * message or call-to-action of the website.
+ * The hero section is divided into two parts: the content and the image. The content
+ * is displayed on the left and the image is displayed on the right. Both the content
+ * and the image are centered vertically and the content is aligned to the left.
+ * The hero content includes a main text with a line height of 28px and a maximum width
+ * of 620px. The text can contain spans separated by a vertical bar character.
+ * The hero image is displayed as a background image with a width of 80% of the height
+ * and a height of the `--hero-image-height` CSS variable. The image is positioned at
+ * the top and has a border radius of 10px and a box shadow.
+ */
+.hero__content,
+.hero__image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero__content {
+  gap: calc(var(--gap) * 2);
+}
+
+.hero__text {
+  max-width: 620px;
+  line-height: 28px;
+  padding-bottom: var(--font-size);
+}
+
+.hero__text span + span::before {
+  content: "|";
+  margin: 0 10px 0 6px;
+  color: #888;
+}
+
+.hero__image {
+  display: flex;
+  position: relative;
+  width: calc(var(--hero-image-height) * 0.8751);
+  height: var(--hero-image-height);
+  justify-self: center;
+  background-image: url("./assets/images/MyPicatBCL.jpg");
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  /* height: calc(100svh - 80px); */
+  z-index: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+
+.hero__image img {
+  display: none;
+  max-width: 320px;
+  clip-path: circle(100%);
+}
+/* HERO SECTION ENDS HERE */
+
+/* ABOUT SECTION STARTS HERE */
+/**
+ * Styles for the about tabs section of the application.
+ * The about__tabs class is used to style the tab navigation, including the active tab indicator.
+ * The about__tabs-content class is used to style the content area for the tabs.
+ * The progress-bar styles are used to display a progress bar with an animated fill effect.
+ */
+ul.about__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 10px;
+  margin: 60px 0 30px 0;
+  gap: calc(var(--gap) * 1.25);
+  border-bottom: 1px solid var(--tertiary-color);
+}
+
+ul.about__tabs li {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+  padding-bottom: 4px;
+  margin: 0 20px 0 0;
+  font-size: calc(var(--font-size) * 0.875);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
+ul.about__tabs li.about__tab {
+  color: var(--text-color-grey);
+}
+
+ul.about__tabs li.about__tab:hover,
+ul.about__tabs li.about__tab.selected:hover {
+  color: var(--primary-color) !important;
+}
+
+ul.about__tabs li.about__tab.selected {
+  color: var(--text-color);
+}
+
+ul.about__tabs li::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  border-radius: 4px;
+  bottom: 0;
+  width: 100%;
+  min-width: 10.75%;
+  background-color: var(--primary-color);
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  animation: widthToZero 0.5s ease-in-out;
+}
+
+ul.about__tabs li.about__tab.selected::after {
+  background-color: var(--text-color);
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+ul.about__tabs li:hover::after,
+ul.about__tabs li.about__tab.selected:hover::after {
+  background-color: var(--primary-color);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  animation: widthToFull 0.3s ease-in-out;
+}
+
+ul.about__tabs li:focus,
+ul.about__tabs li.about__tab.selected:focus {
+  color: var(--text-color) !important;
+}
+
+ul.about__tabs li:focus::after,
+ul.about__tabs li.about__tab.selected:focus::after {
+  background-color: var(--text-color);
+}
+
+.about__tabs-content {
+  padding: 0 10px;
+}
+
+.tab-content {
+  display: none;
+  visibility: hidden;
+}
+
+.tab-content.show {
+  display: block;
+  visibility: visible;
+}
+
+/**
+ * Styles for a progress bar component.
+ * 
+ * The progress bar is contained within a `.p-progress-bar-container` element, which provides a consistent width and background color.
+ * 
+ * The progress bar itself is composed of two elements:
+ * - `.progress-bar-rail`: Represents the full width of the progress bar.
+ * - `.progress-bar`: Represents the current progress, with a width that is dynamically set based on the `data-percent` attribute.
+ * 
+ * The progress bar can be animated using the `.progress-animated` class, which triggers a 1-second ease-in-out animation.
+ */
+.p-progress-bar-container {
+  width: 100%;
+  /* margin: 20px 0 20px 0; */
+  overflow: hidden;
+  background-color: #eee;
+}
+
+.progress-title {
+  margin-left: 0;
+}
+
+.progress-bar-rail,
+.progress-bar {
+  height: 2px;
+  /* padding: 10px; */
+  box-shadow: none;
+}
+
+.progress-bar-rail {
+  width: 100%;
+  background-color: var(--tertiary-color);
+}
+
+.progress-bar {
+  width: var(--data-percent);
+  background-color: var(--primary-color);
+  transition: width 1s ease-in-out;
+}
+
+.progress-bar[data-percent] {
+  --data-percent: calc(attr(data-percent) * 1%);
+  width: var(--data-percent);
+}
+
+.progress-animated {
+  animation: fillProgressBar 1s ease forwards;
+}
+
+/**
+ * Defines an animation that fills a progress bar from 0% to a specified percentage.
+ * The animation is triggered by setting the `data-percent` attribute on an element.
+ * The animation will animate the width of the element from 0% to the specified percentage.
+ */
+@keyframes fillProgressBar {
+  from { 
+    width: 0%; 
+  }
+  to { 
+    width: calc(attr(data-percent) * 1%); 
+  }
+}
+/**
+ * CSS classes for animating text with a fade-in effect.
+ *
+ * The `.text-fadeIn` class applies a 1-second fade-in animation to an element.
+ * The `.fadeIn` class is the animation definition for the fade-in effect.
+ * The `.animated` class sets the animation duration and fill mode.
+ *
+ * The `.tab-history-item` class styles a list item with a left border and padding.
+ * The `.institution` class sets the color of an institution name.
+ * The `.time-frame` class adds top margin and line height to a time frame element.
+ */
+
+.text-fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.tab-history-item {
+  border-left: 1px solid var(--primary-color);
+  padding: 2px 10px;
+  margin-bottom: 20px;
+}
+
+.institution {
+  color: var(--text-color-grey);
+}
+
+.time-frame {
+  line-height: 1.5;
+  margin-top: 5px;
+}
+
+/**
+ * Defines a CSS animation that fades in an element from 0% opacity to 100% opacity.
+ * This animation can be applied to an element using the `animation` property.
+ */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**
+ * Styles for the "About" section of the website.
+ *
+ * The `.about-info-part` class is used to span two grid columns for the information
+ * about the website.
+ *
+ * The `.about-image-part` class is used to style the image and button in the "About"
+ * section. It sets the width, alignment, padding, border, and spacing of the
+ * image and button.
+ *
+ * The `.about-btn` class is used to style the button in the "About" section. It sets
+ * the color, height, padding, alignment, border radius, and cursor style of the
+ * button. The button also has a hover effect that changes the background color,
+ * border color, and adds a box shadow.
+ */
+.about-info-part {
+  grid-column: 1 / span 2;
+}
+
+.about-image-part {
+  display: flex;
+  width: clamp(320px, 480px, 560px);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-self: flex-end;
+  gap: 15px;
+}
+
+.about-image-part h3 {
+  margin: 15px 0;
+}
+
+.about-btn {
+  display: inline-flex;
+  position: relative;
+  color: #fff;
+  height: 42px;
+  border: 2px solid var(--primary-color);
+  padding: 12px 20px;
+  align-items: center;
+  place-content: center;
+  border-radius: 25px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.about-btn h6 {
+  font-size: calc(var(--font-size) * 0.75);
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 0 15px 0 0;
+}
+
+.about-btn:hover {
+  --btn-bg-color: var(--primary-color);
+  background-color: var(--btn-bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  box-shadow: inset -6px -6px 6px 0 rgba(21, 21, 21, 0.1),
+    inset 6px 6px 6px 0 rgba(21, 21, 21, 0.1);
+  animation: slideShadow 1s forwards 1 ease,
+    fillBorderColor 1s forwards 1 ease-in-out;
+}
+
+/**
+ * Applies a pulsing animation to an element.
+ *
+ * The `.pulse` class applies a 2-second infinite pulsing animation to the
+ * element. The animation is implemented using CSS animations.
+ *
+ * The `.circle` class defines a small 8x8 pixel circle element with a subtle
+ * box shadow.
+ *
+ * The `.color-pulse` class sets the background color of the element to green.
+ */
+.pulse {
+  -webkit-animation: pulse-animation 2s infinite;
+  animation: pulse-animation 2s infinite;
+}
+
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #0000001a;
+}
+
+.color-pulse {
+  background: #0f0;
+}
+
+/**
+ * Defines a CSS animation that creates a pulsing effect with a growing box-shadow.
+ * The animation starts with no box-shadow and ends with a box-shadow that expands to 8 pixels in size.
+ * This animation can be used to create a visual effect, such as highlighting an element on the page.
+ */
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 #002000;
+  }
+  100% {
+    box-shadow: 0 0 0 8px #01440185;
+  }
+}
+
+/**
+ * Styles for the social media links list.
+ * 
+ * The `.social-list` class styles a list of social media links, centering them
+ * horizontally and adding spacing between the links. The `.social-list__link`
+ * class styles the individual link elements, setting their size based on the
+ * `--font-size` CSS variable and changing the link color on hover.
+ */
+.social-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 3rem;
+  padding: 0;
+  place-items: center;
+  gap: 1.5rem;
+}
+
+.social-list__link {
+  width: calc(var(--font-size) * 1.375);
+  height: calc(var(--font-size) * 1.375);
+  position: relative;
+  display: flex;
+}
+
+a.social-list__link {
+  color: var(--text-color-grey);
+}
+
+a.social-list__link:hover {
+  color: var(--primary-color);
+}
+
+/* ABOUT SECTION ENDS HERE */
+
+/* PORTFOLIO SECTION STARTS HERE */
+
+/**
+ * Styles for the portfolio section of the website.
+ * 
+ * The portfolio is displayed in a grid layout with responsive columns.
+ * Each portfolio item has a background color, rounded corners, and an aspect ratio of 9:11.
+ * Hovering over a portfolio item will apply a border, scale it up slightly, and add a box shadow.
+ * 
+ * The portfolio item body contains an image that fills the available space.
+ * The gallery item information, including the title and subtitle, is displayed at the bottom of the item.
+ * Hovering over the portfolio item will expand the gallery item information to a maximum height of 73px.
+ * 
+ * A link icon is displayed on the portfolio item, which is initially hidden.
+ * Hovering over the portfolio item will make the link icon visible and apply a hover effect to it.
+ */
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: calc(var(--gap) * 2);
+}
+
+.portfolio__item {
+  background-color: transparent !important;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 9 / 11;
+}
+
+a.portfolio__item {
+  cursor: pointer;
+}
+
+.portfolio__item:hover {
+  border: 2px solid var(--primary-color);
+  transform: scale(1.05);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio__item-body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.portfolio__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  z-index: 0;
+}
+
+.portfolio__item .gallery-item-info {
+  display: flex;
+  position: relative;
+  width: inherit;
+  opacity: 1;
+  z-index: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 6px 11px 14px 18px;
+}
+
+.portfolio__item:hover .gallery-item-info {
+  height: -webkit-fill-available;
+  max-height: 73px;
+  padding: 6px 18px 18px;
+}
+
+.portfolio__link-icon {
+  display: flex;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  font-size: 11px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 25px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.portfolio__link-icon:hover {
+  --btn-bg-color: var(--primary-color);
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  box-shadow: inset -6px -6px 6px 0 rgba(21, 21, 21, 0.1),
+    inset 6px 6px 6px 0 rgba(21, 21, 21, 0.1);
+  animation: slideShadow 1s forwards 1 ease,
+    fillBorderColor 1s forwards 1 ease-in-out;
+}
+
+.portfolio__item:hover .portfolio__link-icon {
+  opacity: 1;
+  z-index: 1;
+}
+
+.portfolio__title {
+  display: inline-flex;
+  position: relative;
+  font-weight: 600;
+  color: white;
+  z-index: -1;
+}
+
+.portfolio__title + span {
+  display: block;
+}
+
+.portfolio__subtitle {
+  font-size: calc(var(--link-font-size) * 0.8);
+}
+
+
+/* PORTFOLIO SECTION ENDS HERE */
+
+/* CONTACTS SECTION */
+
+/**
+ * Styles the contacts section of the page, including the contact items and the contact message form.
+ * The contacts are displayed in a grid layout with a maximum of 4 columns and a gap between items.
+ * The contact items have a transparent background and a column-based layout with an icon and content.
+ * The contact message form is centered and has a maximum width of 565px, with a 2px border and rounded corners.
+ * The form fields have a dark background color and a hover effect on the border.
+ * The form button has a height of 48px.
+ */
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: calc(var(--gap) * 2);
+  grid-template-rows: max-content;
+  height: max-content;
+}
+
+.contacts h3 {
+  grid-column: 1 / span 2;
+}
+
+.contact-item {
+  display: flex;
+  background-color: transparent !important;
+  width: max-content;
+  flex-direction: column;
+  border: 2px solid transparent;
+  font-size: var(--font-size);
+  gap: 5px;
+  height: max-content;
+}
+
+.contact-item .contact-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+.contact-message {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-message form {
+  width: 100%;
+  max-width: 565px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+}
+
+.contact-message form fieldset {
+  display: grid;
+  padding: 30px;
+  border: 2px solid transparent;
+  gap: 40px;
+}
+
+.contact-message form .form-input-group {
+  display: grid;
+  gap: 20px;
+}
+
+form .form-input-group .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-message form input {
+  height: 48px;
+}
+
+.contact-message form input,
+.contact-message form textarea {
+  font-size: var(--font-size) !important;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 8px;
+  border-width: 2px !important;
+  border-style: inset;
+  background-color: rgba(36, 36, 36, 0.8);
+}
+
+.contact-message form input:hover,
+.contact-message form textarea:hover {
+  border-color: var(--primary-color);
+}
+
+.contact-message form textarea {
+  min-height: 100px;
+}
+
+form button.btn {
+  height: 48px;
+}
+
+/* CONTACT SECTION ENDS HERE */
+
+/**
+ * Styles the footer of the page, including centering the text, adding padding, and styling the border and text color.
+ */
+footer {
+  text-align: center;
+  padding: 60px 0 30px;
+  border-top: 1px solid var(--tertiary-color);
+}
+
+footer,
+footer a {
+  color: var(--text-color-grey);
+}
+.color-red {
+  color: red;
+}
+
+/**
+ * Styles for common HTML elements and utility classes.
+ *
+ * - `button`, `input`, `optgroup`, `select`, `textarea`: Resets font styles to a consistent baseline.
+ * - `.top-0`: Sets `top` to 0 and removes any `margin-top` or `padding-top`.
+ * - `.center`: Centers items both horizontally and vertically using Flexbox.
+ * - `.flex`: Applies `display: flex !important` to an element.
+ * - `.flex-end`: Aligns Flexbox items to the end of the container.
+ * - `.space-between`: Distributes Flexbox items evenly with space between them.
+ * - `.justify-center`: Centers Flexbox items horizontally.
+ * - `.align-flex-start`: Aligns Flexbox items to the start of the container.
+ * - `.display-block`: Sets `display: block` on an element.
+ * - `.inline-block`: Sets `display: inline-block !important` on an element.
+ * - `.small`, `small`: Reduces font size to 80% and sets a lighter font weight.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.top-0 {
+  top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.center {
+  align-items: center;
+  align-content: center;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.flex-end {
+  justify-content: flex-end !important;
+}
+
+.space-between {
+  justify-content: space-between !important;
+}
+
+.justify-center {
+  justify-content: center !important;
+}
+
+.align-flex-start {
+  align-items: flex-start !important;
+}
+
+.display-block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+.small,
+small {
+  font-size: 80%;
+  font-weight: 400;
+}
+
+/**
+ * Styles for the main buttons used throughout the application.
+ * The buttons have a primary color background, white text, rounded corners, and hover/focus/active styles.
+ * The `.btn-transparent` class can be used to create a transparent button with a primary color hover effect.
+ * The `.buttons` class is used to create a flex container for multiple buttons.
+ * The `a` styles are for links throughout the application, setting the font size, weight, color, and hover effect.
+ */
+main .btn {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-color);
+  height: auto;
+  min-height: 24px;
+  max-height: 48px;
+  padding: 8px 22px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: var(--link-font-size);
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  align-items: center;
+  place-content: center;
+  -webkit-transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+}
+
+main .btn {
+  color: var(--text-color);
+}
+
+.btn-transparent {
+  background-color: transparent !important;
+}
+
+.btn-transparent:hover {
+  background-color: var(--primary-color) !important;
+}
+
+main .btn:hover,
+.btn-transparent:hover {
+  --btn-bg-color: var(--primary-color);
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  box-shadow: inset -6px -6px 6px 0 rgba(21, 21, 21, 0.1),
+    inset 6px 6px 6px 0 rgba(21, 21, 21, 0.1);
+  animation: slideShadow 1s forwards 1 ease,
+    fillBorderColor 1s forwards 1 ease-in-out;
+}
+
+.btn:focus {
+  --btn-bg-color: #121662; /* #36005e*/
+  background-color: var(--btn-bg-color);
+  border-color: var(--btn-bg-color);
+}
+
+.btn:active {
+  --btn-bg-color: #01043e;
+  background-color: var(--btn-bg-color);
+  border-color: var(--btn-bg-color);
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+a {
+  font-size: var(--link-font-size);
+  font-weight: 500;
+  color: var(--text-color);
+  line-height: 1.6;
+  text-decoration: inherit;
+}
+
+a,
+a:visited,
+a.active {
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/**
+ * Applies a set of styles to various elements in the portfolio section of the website.
+ * 
+ * - `.portfolio-name`, `.nav__link`, `h4`, and `.divider` elements are set to use the `--text-color-grey` CSS variable for their text color.
+ * - `.card` elements are given a padding of 2em.
+ * - `.position-relative` elements are set to have a relative position with the `!important` flag.
+ */
+.portfolio-name,
+.nav__link,
+h4,
+.divider {
+  color: var(--text-color-grey);
+}
+
+.card {
+  padding: 2em;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+/**
+ * Defines the styles for the light mode theme.
+ * This media query applies when the user's system prefers the light color scheme.
+ */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: var(--primary-color);
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/**
+ * Styles for the modal component.
+ * The modal is a full-screen overlay that displays content on top of the main page.
+ * It includes a header with back and close buttons, a body that can display an image,
+ * and a footer with additional information.
+ */
+.modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 1000;
+  background-color: #242424;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 0;
+}
+
+.back,
+.close {
+  height: 24px;
+  color: var(--text-color-grey);
+  cursor: pointer;
+}
+
+.span-2 {
+  grid-column: 1 / span 2;
+}
+
+.span-2-3 {
+  grid-column: 2 / span 3;
+}
+
+.back:hover,
+.close:hover {
+  color: var(--primary-color);
+}
+
+.back:focus,
+.back:active,
+.close:focus,
+.close:active {
+  color: var(--text-color);
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-body img {
+  max-width: 906px;
+  width: 100%;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 15px 16px 30px;
+  color: var(--text-color-grey);
+  border-top: 1px solid var(--tertiary-color);
+}
+
+/* Modal Content */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #888;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animateTop;
+  animation-duration: 0.4s;
+}
+
+.project-info {
+  display: flex;
+  padding: 30px 30px;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.project-footer-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+}
+
+.project-footer-details a {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+/* Add Animation */
+/**
+ * Defines an animation that moves an element from -300px off the top of the screen to its final position at the top of the screen, while fading it in from 0 to 1 opacity.
+ * This animation can be used to make an element smoothly appear at the top of the screen.
+ */
+@keyframes animateTop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.success {
+  background-color: green !important;
+}
+
+/**
+ * Applies a responsive grid layout to the `.portfolio` element when the screen width is less than or equal to 1441 pixels.
+ * The grid consists of 3 columns with equal width, and the gap between grid items is 3 times the value of the `--gap` CSS variable.
+ */
+@media screen and (max-width: 1441px) {
+  .portfolio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--gap) * 3);
+  }
+}
+
+/**
+ * Responsive styles for the website at screen sizes up to 768px wide.
+ * Adjusts various layout and typography properties to ensure the design
+ * looks good on smaller screens.
+ */
+@media screen and (max-width: 769px) {
+  :root {
+    --breakpoint: clamp(641px, 100%, 768px);
+    --max-width: calc(var(--breakpoint) * 0.9);
+    --font-size: 15px;
+    --hero-image-height: 90%;
+    --link-font-size: calc(var(--font-size) * 0.785716);
+  }
+
+  .columns-3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  h1 {
+    font-size: calc(var(--font-size) * 2.75);
+    margin-bottom: 10px !important;
+  }
+
+  h2 {
+    font-size: calc(var(--font-size) * 2);
+  }
+
+  h3 {
+    font-size: calc(var(--font-size) * 1.75);
+  }
+
+  section {
+    width: 100%;
+    height: clamp(641px, 768px, 100%);
+    padding: 80px 0;
+  }
+
+  .about-image-part {
+    justify-self: center;
+  }
+
+  .portfolio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--gap) * 3);
+  }
+
+  .contact .columns-2 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .contacts {
+    grid-template-columns: repeat(auto-fit, 200px);
+  }
+
+  .contact-message {
+    grid-column: 2 / span 3;
+    width: 390px;
+  }
+}
+/**
+ * Media query styles for screens with a maximum width of 640px.
+ * These styles override various layout and typography properties
+ * to optimize the design for smaller screens.
+ */
+
+@media screen and (max-width: 641px) {
+  :root {
+    --breakpoint: clamp(376px, 100%, 640px);
+    --max-width: calc(var(--breakpoint) * 0.9);
+    --font-size: 14px;
+    --hero-image-height: 90%;
+    --link-font-size: calc(var(--font-size) * 0.785716);
+  }
+
+  .sm-hide {
+    display: none !important;
+  }
+
+  .sm-block {
+    display: block !important;
+  }
+
+  .sm-gap-0 {
+    gap: 0;
+  }
+
+  h1 {
+    font-size: calc(var(--font-size) * 2.5);
+    margin-bottom: 10px !important;
+  }
+
+  h2 {
+    font-size: calc(var(--font-size) * 1.75);
+  }
+
+  h3 {
+    font-size: calc(var(--font-size) * 1.5);
+  }
+
+  section {
+    width: 100%;
+    height: clamp(320px, 640px, 100%);
+    padding: 60px 0;
+  }
+
+  .section__body,
+  .section__heading,
+  .section__content,
+  .columns-1,
+  .columns-2,
+  .columns-3,
+  .columns-4,
+  .section__body,
+  .section__heading,
+  .section__content {
+    max-width: calc(var(--breakpoint) * 0.80625);
+    grid-template-columns: calc(var(--breakpoint) * 0.80625);
+  }
+
+  .intro__text {
+    max-width: calc(var(--max-width) * 0.95);
+  }
+
+  .about-info-part.pr-30,
+  .about__tabs-content {
+    padding-right: 0 !important;
+  }
+
+  .column-1,
+  .column-2 {
+    max-width: calc(var(--breakpoint) * 0.775);
+  }
+
+  .container {
+    width: calc(var(--breakpoint) * 0.9375);
+    max-width: calc(var(--max-width) - 30px);
+    padding: 0 15px;
+    overflow: hidden;
+  }
+
+  .about-info-part {
+    grid-column: 1 / 1;
+  }
+
+  .about-image-part {
+    max-width: 100% !important;
+  }
+
+  .section__thumbnail,
+  .section__thumbnail picture,
+  .section__thumbnail img {
+    --thumbnail-size: calc(var(--breakpoint) * 0.24375);
+  }
+
+  .portfolio {
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--gap) * 1);
+  }
+
+  ul.about__tabs li {
+    margin: 0 9px 0 0;
+  }
+
+  .about-image-part {
+    justify-self: center;
+  }
+}
+
+/**
+ * Media query styles for screens with a maximum width of 480px.
+ * These styles override various CSS properties to optimize the layout and
+ * typography for smaller screens.
+ */
+@media screen and (max-width: 481px) {
+  :root {
+    --max-width: 100%;
+    --font-size: 11px;
+    --link-font-size: calc(var(--font-size) * 0.785716);
+  }
+
+  h1 {
+    font-size: calc(var(--font-size) * 2.25);
+  }
+
+  h2 {
+    font-size: calc(var(--font-size) * 1.55);
+  }
+
+  h3 {
+    font-size: calc(var(--font-size) * 1.25);
+  }
+
+  .sm-show {
+    display: block !important;
+  }
+
+  section {
+    height: clamp(320px, 480px, 100%);
+    padding: 45px 0;
+  }
+
+  .section__body,
+  .section__heading,
+  .section__content,
+  .columns-1,
+  .columns-2,
+  .columns-3,
+  .columns-4,
+  .section__body,
+  .section__heading,
+  .section__content {
+    max-width: 330px;
+    grid-template-columns: repeat(1, 330px);
+  }
+
+  .intro__text {
+    max-width: calc(var(--max-width) * 0.95);
+  }
+
+  .column-1,
+  .column-2 {
+    max-width: 310px;
+  }
+
+  .container {
+    width: calc(var(--breakpoint) * 0.9375);
+    max-width: calc(var(--max-width) - 30px);
+    padding: 0 15px;
+    overflow: hidden;
+  }
+
+  .hero__text {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .hero__image {
+    max-width: 0px;
+  }
+
+  .hero__image img {
+    width: 0px;
+  }
+
+  .section__thumbnail,
+  .section__thumbnail picture,
+  .section__thumbnail img {
+    --thumbnail-size: calc(var(--breakpoint) * 0.24375);
+  }
+
+  .portfolio__item {
+    aspect-ratio: 9 / 13;
+  }
+
+  .conntact .columns-2 {
+    max-width: 330px;
+    grid-template-columns: 330px;
+  }
+
+  .contact-message {
+    grid-column: 1;
+    width: 330px;
+  }
+}
+
+
+/**
+ * Applies responsive styles for screens with a maximum width of 375px.
+ * This includes adjusting font sizes, layout, and other visual elements
+ * to ensure the design is optimized for smaller screens.
+ */
+@media screen and (max-width: 376px) {
+  :root {
+    --max-width: 100%;
+    --font-size: 11px;
+    --link-font-size: calc(var(--font-size) * 0.785716);
+  }
+
+  h1 {
+    font-size: calc(var(--font-size) * 2.25);
+  }
+
+  h2 {
+    font-size: calc(var(--font-size) * 1.55);
+  }
+
+  h3 {
+    font-size: calc(var(--font-size) * 1.25);
+  }
+
+  .sm-show {
+    display: block !important;
+  }
+
+  section {
+    height: clamp(320px, 480px, 100%);
+    padding: 45px 0;
+  }
+
+  .section__body,
+  .section__heading,
+  .section__content,
+  .columns-1,
+  .columns-2,
+  .columns-3,
+  .columns-4,
+  .section__body,
+  .section__heading,
+  .section__content {
+    max-width: 258px;
+    grid-template-columns: repeat(1, 258px);
+  }
+
+  .intro__text {
+    max-width: calc(var(--max-width) * 0.95);
+  }
+
+  .column-1,
+  .column-2 {
+    max-width: 238px;
+  }
+
+  .container {
+    width: 288px;
+    max-width: calc(var(--max-width) - 30px);
+    padding: 0 15px;
+    overflow: hidden;
+  }
+
+  .hero__text {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .hero__image {
+    max-width: 0px;
+  }
+
+  .hero__image img {
+    width: 0px;
+  }
+
+  .section__thumbnail,
+  .section__thumbnail picture,
+  .section__thumbnail img {
+    --thumbnail-size: 126px;
+  }
+
+  .portfolio__item {
+    aspect-ratio: 9 / 13;
+  }
+
+  .contact-message {
+    grid-column: 1;
+    width: 258px;
+  }
+}
